@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>foreign-exchange</artifactId>
-        <groupId>com.foreign.exchange</groupId>
+        <artifactId>finance-time</artifactId>
+        <groupId>com.finance.time</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>exchange-service</artifactId>
+    <artifactId>app-config</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
