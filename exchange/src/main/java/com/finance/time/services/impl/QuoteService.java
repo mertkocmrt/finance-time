@@ -1,10 +1,7 @@
 package com.finance.time.services.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finance.time.dto.responses.QuoteResponse;
-import com.finance.time.exceptions.BaseException;
-import com.finance.time.exceptions.EntityNotFoundException;
 import com.finance.time.exceptions.ServiceProviderException;
 import com.finance.time.models.Quote;
 import com.finance.time.models.mapper.IQuoteMapper;

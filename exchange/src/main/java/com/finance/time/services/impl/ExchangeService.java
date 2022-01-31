@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +40,7 @@ public class ExchangeService implements IExchangeService {
     public ExchangeResponse createExchange(CreateExchangeDto request) throws ServiceProviderException{
         try {
             QuoteResponse quoteResponse = quoteService.getQuote(request.getBuyCurrency(), request.getSellCurrency());
-            Exchange exchange = mapToExchange(request, quoteResponse);
+            Exchange exchange = mapToExchange(request, null);//quoteResponse);
             Exchange insertedExchange = exchangeRepository.save(exchange);
             return exchangeMapper.entityToResponse(insertedExchange);
         } catch(Exception e){
@@ -74,7 +73,7 @@ public class ExchangeService implements IExchangeService {
         try {
             List<Exchange> exchange = exchangeRepository.findByQuoteDate(conversionDate);
 
-            if(!exchange.isEmpty()){
+            if(exchange.isEmpty()){
                 throw new EntityNotFoundException();
             }
 

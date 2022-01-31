@@ -8,13 +8,14 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class BaseException extends RuntimeException {
 
-    private String message;
+    private final String message;
 
     public BaseException() {
-        super(ExceptionEnum.INTERNAL_SERVER_ERROR.getValue());
+        this.message = ExceptionEnum.INTERNAL_SERVER_ERROR.getValue();
     }
 
     public BaseException(String message) {
-        super(message);
+        this.message = message;
+
     }
 }

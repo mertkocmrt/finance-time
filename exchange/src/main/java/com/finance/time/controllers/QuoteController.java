@@ -1,6 +1,8 @@
 package com.finance.time.controllers;
 
 import com.finance.time.dto.responses.QuoteResponse;
+import com.finance.time.exceptions.BaseException;
+import com.finance.time.exceptions.ServiceProviderException;
 import com.finance.time.services.IQuoteService;
 import com.finance.time.services.impl.QuoteService;
 import org.slf4j.Logger;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 
 @RestController
 @RequestMapping("v1/quotes")
@@ -33,9 +34,12 @@ public class QuoteController {
                                                   @RequestParam(name = "buyCurrency") String buyCurrency) {
         try {
             return ResponseEntity.ok(quoteService.getQuote(sellCurrency,buyCurrency));
-        } catch(Exception e){
-            LOG.error("Exchange rate API hata..",e);
+        } catch(ServiceProviderException e){
             throw e;
+        }
+        catch(Exception e){
+            LOG.error("Exchange rate API hata..",e);
+            throw new BaseException();
         }
     }
 }

@@ -15,21 +15,21 @@ import java.util.Locale;
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({EntityNotFoundException.class})
-    protected ResponseEntity handleNotFoundException(EntityNotFoundException e, Locale locale) {
+    protected ResponseEntity<BaseResponse> handleNotFoundException(EntityNotFoundException e, Locale locale) {
         return ResponseEntity
                 .badRequest()
                 .body(BaseResponse.builder().responseMessage(e.getMessage()).build());
     }
 
     @ExceptionHandler({ServiceProviderException.class})
-    protected ResponseEntity handleServiceProviderException(ServiceProviderException e, Locale locale) {
+    protected ResponseEntity<BaseResponse>  handleServiceProviderException(ServiceProviderException e, Locale locale) {
         return ResponseEntity
                 .badRequest()
                 .body(BaseResponse.builder().responseMessage(e.getMessage()).build());
     }
 
     @ExceptionHandler(BaseException.class)
-    protected ResponseEntity handleOtherException (BaseException e, Locale locale) {
+    protected ResponseEntity<BaseResponse>  handleOtherException (BaseException e, Locale locale) {
         return ResponseEntity
                 .internalServerError()
                 .body(BaseResponse.builder().responseMessage(e.getMessage()).build());
